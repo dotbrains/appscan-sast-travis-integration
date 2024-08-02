@@ -1,0 +1,38 @@
+sudo: required
+dist: focal
+group: beta
+language: generic
+
+services:
+  - docker
+
+branches:
+  only:
+    - development
+    - /^(main|master)$/
+    - /^\d+\.\d+(\.\d+)?(-\S*)?$/
+
+notifications:
+  email: false
+
+configs:
+  - &APPSCAN_CONFIG
+    - APPSCAN_API_KEY=${APPSCAN_API_KEY}
+    - APPSCAN_API_SECRET=${APPSCAN_API_SECRET}
+    - APPSCAN_APP_ID=${APPSCAN_APP_ID}
+    - APPSCAN_NAME=${TRAVIS_BRANCH}-${TRAVIS_COMMIT}
+
+stages:
+  - name: Static Code Analysis
+    if: type IN (pull_request, push) AND branch IN (development, main, master)
+
+jobs:
+  include:
+    - stage: Static Code Analysis
+      env:
+        - *APPSCAN_CONFIG
+      addons:
+        apt:
+          packages:
+            - jq
+      script: bash appscan/appscan_sca.sh
