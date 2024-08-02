@@ -1,4 +1,7 @@
 # HCL AppScan SAST Integration with Travis CI
+![yaml](https://img.shields.io/badge/-YAML-black?style=flat-square&logo=yaml&logoColor=red)
+![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
+![travisci](https://img.shields.io/badge/-TravisCI-4e4847?style=flat-square&logo=travisci&logoColor=e0da53)
 
 This repository contains a sample project that demonstrates how to integrate HCL AppScan SAST with Travis CI.
 
